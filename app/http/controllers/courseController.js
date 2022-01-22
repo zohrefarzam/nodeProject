@@ -8,9 +8,14 @@ class courseController extends controller {
   async single(req, res) {
     let course = await Course.findOne({ slug: req.params.course }).populate([
       { path: "user", select: "name" },
-      { path: "episodes" },
+      {
+        path: "episodes",
+        options: {
+          sort: { number: 1 },
+        },
+      },
     ]);
-    res.render("home/single-course");
+    res.render("home/single-course", { course });
   }
 }
 
