@@ -13,7 +13,7 @@ const episodeSchema = Schema({
     videoUrl : { type : String , required : true },
     downloadCount : { type : Number , default : 0 },
     viewCount : { type : Number , default : 0 },
-    commentCount : { type : String , default : 0 },
+    commentCount : { type : Number , default : 0 },
 } , { timestamps : true });
 
 episodeSchema.plugin(mongoosePaginate);
@@ -56,5 +56,10 @@ episodeSchema.methods.download = function(check, canUserUse) {
 episodeSchema.methods.path = function() {
     return `${this.course.path()}/${this.number}`;
 }
+
+episodeSchema.methods.inc = async function(field , num = 1) {
+    this[field] += num;
+    await this.save();
+} 
 
 module.exports = mongoose.model('Episode' , episodeSchema);
