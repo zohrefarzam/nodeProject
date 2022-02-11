@@ -8,7 +8,24 @@ const bcrypt = require('bcrypt');
 class courseController extends controller {
     
     async index(req , res) {
-        res.render('home/index' , { courses });
+        
+        let query = {};
+
+        if(req.query.search) 
+            query.title = new RegExp(req.query.search , 'gi');
+
+        if(req.query.type && req.query.type != 'all')
+            query.type = req.query.type;
+
+        let courses = Course.find({ ...query });
+
+
+        if(req.query.order) 
+            courses.sort({ createdAt : -1})
+
+        courses = await courses.exec();
+
+        res.render('home/courses' , { courses });
     }
 
     async single(req , res) {
