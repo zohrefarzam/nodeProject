@@ -5,11 +5,11 @@ class registerController extends controller {
 
     showRegsitrationForm(req , res) {
         const title = 'صفحه عضویت';
-        res.render('home/auth/register' , { title });
+        res.render('home/auth/register' , { recaptcha : this.recaptcha.render() , title });
     }
 
     async registerProccess(req ,res , next) {
-
+        await this.recaptchaValidation(req , res);
         let result = await this.validationData(req)
 
         if(result) {

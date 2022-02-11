@@ -58,4 +58,8 @@ router.put(
   episodeController.update
 );
 router.delete("/episodes/:id", episodeController.destroy);
+
+router.get('/comments/approved')
+router.get('/comments/approved')
+
 module.exports = router;

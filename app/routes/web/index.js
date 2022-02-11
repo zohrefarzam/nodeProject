@@ -5,6 +5,7 @@ const router = express.Router();
 const redirectIfAuthenticated = require('app/http/middleware/redirectIfAuthenticated');
 const redirectIfNotAdmin = require('app/http/middleware/redirectIfNotAdmin');
 const errorHandler = require('app/http/middleware/errorHandler');
+
 // Admin Router
 const adminRouter = require('app/routes/web/admin');
 router.use('/admin' , redirectIfNotAdmin.handle , adminRouter);
@@ -17,8 +18,10 @@ router.use('/' , homeRouter);
 const authRouter = require('app/routes/web/auth');
 router.use('/auth' , redirectIfAuthenticated.handle ,authRouter);
 
-//handle errors
-router.all("*",errorHandler.error404 );
-  router.use(errorHandler.handler);
-  
+// Handle Errors
+router.all('*' , errorHandler.error404);
+router.use(errorHandler.handler)
+
+
+
 module.exports = router;
