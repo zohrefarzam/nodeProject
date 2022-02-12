@@ -31,10 +31,7 @@
                 <% } %>
             </h5>
             <%- comment.comment %>
-
-
-            
-<span style="display:flex" class="text-muted"> - <%= date(comment.createdAt).fromNow() %></span style="display:flex">
+            <small class="text-muted"> - <%= date(comment.createdAt).fromNow() %></small>
              
             <% comment.comments.forEach(comment => { %> 
                 <div class="media mt-4">

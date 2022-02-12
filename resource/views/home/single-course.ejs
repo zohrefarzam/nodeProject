@@ -8,7 +8,7 @@
             <p class="text-muted small">
                 <span> توسط <a href="#"><%= course.user.name %></a></span>
                 -
-          <span><%= date(course.createdAt).format('jD jMMMM jYYYY') %></span>
+                <span>ارسال شده در <%= date(course.createdAt).format('jD jMMMM jYYYY') %></span>
             </p>
     
             <hr>
@@ -95,7 +95,7 @@
         <div class="card my-4">
             <h5 class="card-header">جستجو</h5>
             <div class="card-body">
-            <form class="input-group" action="/courses" method="GET" >
+            <form class="input-group" action="/courses" method="GET">
                 <input type="text" class="form-control" name="search" placeholder="دنبال چی میگردی ؟">
                 <span class="input-group-btn">
                 <button class="btn btn-secondary" type="submit">جستجو!</button>

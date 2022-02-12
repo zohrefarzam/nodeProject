@@ -9,14 +9,12 @@ class resetPasswordController extends controller {
     showResetPassword(req , res) {
         const title = 'بازیابی رمز عبور';
         res.render('home/auth/passwords/reset' , { 
-          
             title,
             token : req.params.token 
         });
     }
 
     async resetPasswordProccess(req  ,res , next) {
-       
         let result = await this.validationData(req)
         if(result) {
             return this.resetPassword(req, res)

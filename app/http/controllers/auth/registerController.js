@@ -9,7 +9,6 @@ class registerController extends controller {
     }
 
     async registerProccess(req ,res , next) {
-      
         let result = await this.validationData(req)
 
         if(result) {

@@ -17,7 +17,7 @@ module.exports = class Helpers {
             auth : this.auth(),
             viewPath : this.viewPath,
             ...this.getGlobalVaribales(),
-            old : this.oldm,
+            old : this.old,
             date : this.date,
             req : this.req
         }
