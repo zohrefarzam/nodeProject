@@ -109,31 +109,23 @@
             <h5 class="card-header">دسته بندی ها</h5>
             <div class="card-body">
             <div class="row">
-                <div class="col-lg-6">
-                <ul class="list-unstyled mb-0">
-                    <li>
-                    <a href="#">طراحی وب</a>
-                    </li>
-                    <li>
-                    <a href="#">HTML</a>
-                    </li>
-                    <li>
-                    <a href="#">برنامه نویسی</a>
-                    </li>
-                </ul>
-                </div>
-                <div class="col-lg-6">
-                <ul class="list-unstyled mb-0">
-                    <li>
-                    <a href="#">جاوااسکریپت</a>
-                    </li>
-                    <li>
-                    <a href="#">سی اس اس</a>
-                    </li>
-                    <li>
-                    <a href="#">آموزش تخصصی</a>
-                    </li>
-                </ul>
+                <div class="col">
+                    <ul class="list-unstyled pr-0">
+                        <% categories.forEach(category => { %> 
+                            <li>
+                                <a href="/courses?category=<%= category.slug %>"><%= category.name %></a>
+                                <% if(category.childs) { %> 
+                                    <ul>
+                                        <% category.childs.forEach(cate => { %>
+                                            <li>
+                                                <a href="/courses?category=<%= cate.slug %>"><%= cate.name %></a>    
+                                            </li>                                    
+                                        <% }) %>
+                                    </ul>
+                                <% } %> 
+                            </li>    
+                        <% }) %>
+                    </ul>
                 </div>
             </div>
             </div>

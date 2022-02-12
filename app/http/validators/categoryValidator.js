@@ -12,10 +12,10 @@ class categoryValidator extends validator {
                 .custom(async (value , { req }) => {
                     if(req.query._method === 'put') {
                         let category = await Category.findById(req.params.id);
-                        if(category.name === value) return;
+                        if(category.slug === value) return;
                     }
                     
-                    let category = await Category.findOne({ name : value });
+                    let category = await Category.findOne({ slug : this.slug(value) });
                     if(category) {
                         throw new Error('چنین دسته ای با این عنوان قبلا در سایت قرار داد شده است')
                     }
@@ -25,6 +25,10 @@ class categoryValidator extends validator {
                 .not().isEmpty()
                 .withMessage('فیلد پدر دسته نمیتواند خالی بماند')
         ]
+    }
+
+    slug(title) {
+        return title.replace(/([^۰-۹آ-یa-z0-9]|-)+/g , "-")
     }
 }
 
