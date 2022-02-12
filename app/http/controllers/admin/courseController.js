@@ -16,8 +16,9 @@ class courseController extends controller {
         }
     }
 
-    create(req , res) {
-        res.render('admin/courses/create');        
+async create(req , res) {
+      let categories = await Category.find({});
+        res.render('admin/courses/create', { categories });        
     }
 
     async store(req , res , next) {
