@@ -71,8 +71,12 @@
         </div>
     </form>
 
-<link rel="stylesheet" href="/css/component-chosen.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.6/chosen.jquery.min.js"></script>
-<script>
-    $('.form-control-chosen').chosen({});
-</script>
+    <link rel="stylesheet" href="/css/component-chosen.min.css">
+    <script src='/ckeditor/ckeditor.js' ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.6/chosen.jquery.min.js"></script>
+    <script>
+        CKEDITOR.replace('body' , {
+             filebrowserUploadUrl : '/admin/upload-image'
+         })
+        $('.form-control-chosen').chosen({});
+    </script>
