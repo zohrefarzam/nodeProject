@@ -66,6 +66,5 @@ router.get('/comments' , commentController.index);
 router.put('/comments/:id/approved' , commentController.update );
 router.delete('/comments/:id' , commentController.destroy);
 
-router.post('/upload-image' ,upload.single('upload'),adminController.uploadImage)
-
+router.post('/upload-image' , upload.single('upload') , adminController.uploadImage);
 module.exports = router;

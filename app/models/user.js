@@ -1,13 +1,15 @@
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 const bcrypt = require('bcrypt');
 const uniqueString = require('unique-string')
 
-const userSchema = mongoose.Schema({
+const userSchema = Schema({
     name : { type : String , required : true },
     admin : { type : Boolean ,  default : 0 },
     email : { type : String , unique : true  ,required : true},
     password : { type : String ,  required : true },
     rememberToken : { type : String , default : null },
+    learning : [{ type : Schema.Types.ObjectId , ref : 'Course'}],
 } , { timestamps : true , toJSON : { virtuals : true } });
 
 userSchema.pre('save' , function(next) {
@@ -48,8 +50,8 @@ userSchema.methods.isVip = function() {
     return true;
 }
 
-userSchema.methods.checkLearning = async function(course) {
-    return true;
+userSchema.methods.checkLearning = function(courseId) {
+    return this.learning.indexOf(courseId) !== -1;
 }
 
 module.exports = mongoose.model('User' , userSchema);

@@ -22,6 +22,7 @@ router.get('/' , homeController.index);
 router.get('/about-me' , homeController.index);
 router.get('/courses' , courseController.index);
 router.get('/courses/:course' , courseController.single);
+router.post('/courses/payment' , courseController.payment);
 
 router.post('/comment' , redirectIfNotAuthenticated.handle , commentValidator.handle() ,homeController.comment);
 router.get('/download/:episode' , courseController.download);

@@ -4,6 +4,7 @@ class courseController extends controller {
     index(req , res) {
         res.render('admin/index');
     }
+
     uploadImage(req, res) {
         let image = req.file;
         res.json({
@@ -12,6 +13,7 @@ class courseController extends controller {
             "url" : `${image.destination}/${image.filename}`.substring(8)
         });
     }
+
 }
 
 module.exports = new courseController();
