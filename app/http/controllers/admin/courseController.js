@@ -1,5 +1,6 @@
 const controller = require('app/http/controllers/controller');
 const Course = require('app/models/course');
+const Category = require('app/models/category');
 const fs = require('fs');
 const path = require('path');
 const sharp = require('sharp');
@@ -59,8 +60,8 @@ class courseController extends controller {
             let course = await Course.findById(req.params.id);
             if( ! course ) this.error('چنین دوره ای وجود ندارد' , 404);
 
-
-            return res.render('admin/courses/edit' , { course });
+            let categories = await Category.find({});
+            return res.render('admin/courses/edit' , { course , categories });
         } catch (err) {
             next(err);
         }
@@ -141,10 +142,6 @@ class courseController extends controller {
 
     getUrlImage(dir) {
         return dir.substring(8);
-    }
-
-    slug(title) {
-        return title.replace(/([^۰-۹آ-یa-z0-9]|-)+/g , "-")
     }
 }
 

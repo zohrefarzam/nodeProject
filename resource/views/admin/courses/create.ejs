@@ -22,6 +22,16 @@
         </div>
     </div>
     <div class="form-group row">
+        <div class="col">
+            <label for="categories" class="control-label font-weight-bold font-weight-bold">دسته بندی</label>
+            <select name="categories" id="categories" class="form-control form-control-chosen" data-placeholder="دسته بندی مورد نظر ..." multiple>
+                <% categories.forEach(cate => { %> 
+                    <option value="<%= cate.id %>"><%= cate.name %></option>                        
+                <% }) %>
+            </select>
+        </div>
+    </div>
+    <div class="form-group row">
       <div class="col">
           <label for="body" class="control-label font-weight-bold">متن</label>
           <textarea rows="5" class="form-control" name="body" id="body" placeholder="متن مقاله را وارد کنید"><%= old('body') %></textarea>
@@ -49,3 +59,9 @@
         </div>
     </div>
 </form>
+
+<link rel="stylesheet" href="/css/component-chosen.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.6/chosen.jquery.min.js"></script>
+<script>
+    $('.form-control-chosen').chosen({});
+</script>
