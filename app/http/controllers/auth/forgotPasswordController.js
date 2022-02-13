@@ -8,10 +8,11 @@ class forgotPasswordController extends controller {
     
     showForgotPassword(req , res) {
         const title = 'فراموشی رمز عبور';
-        res.render('home/auth/passwords/email' , { title });
+        res.render('home/auth/passwords/email' , { recaptcha : this.recaptcha.render() , title });
     }
 
     async sendPasswordResetLink(req  ,res , next) {
+        await this.recaptchaValidation(req , res);
         let result = await this.validationData(req)
         if(result) {
             return this.sendResetLink(req, res)

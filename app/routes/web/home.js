@@ -22,7 +22,9 @@ router.get('/' , homeController.index);
 router.get('/about-me' , homeController.index);
 router.get('/courses' , courseController.index);
 router.get('/courses/:course' , courseController.single);
-router.post('/courses/payment' , courseController.payment);
+router.post('/courses/payment' , redirectIfNotAuthenticated.handle , courseController.payment);
+router.get('/courses/payment/checker' , redirectIfNotAuthenticated.handle , courseController.checker);
+
 
 router.post('/comment' , redirectIfNotAuthenticated.handle , commentValidator.handle() ,homeController.comment);
 router.get('/download/:episode' , courseController.download);
