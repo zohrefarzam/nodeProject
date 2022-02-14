@@ -10,6 +10,7 @@ const commentValidator = require('app/http/validators/commentValidator');
 
 // middlewares
 const redirectIfNotAuthenticated = require('app/http/middleware/redirectIfNotAuthenticated');
+const userController = require('app/http/controllers/userController');
 
 router.get('/logout' , (req ,res) => {
     req.logout();
@@ -29,5 +30,6 @@ router.get('/courses/payment/checker' , redirectIfNotAuthenticated.handle , cour
 router.post('/comment' , redirectIfNotAuthenticated.handle , commentValidator.handle() ,homeController.comment);
 router.get('/download/:episode' , courseController.download);
 
-
+router.get('/user/panel',userController.index)
+router.get('/user/panel/history',userController.history)
 module.exports = router;
