@@ -12,12 +12,14 @@ const categoryController = require('app/http/controllers/admin/categoryControlle
 const courseValidator = require('app/http/validators/courseValidator');
 const episodeValidator = require('app/http/validators/episodeValidator');
 const categoryValidator = require('app/http/validators/categoryValidator');
+const registerValidator = require('app/http/validators/registerValidator');
 
 // Helpers
 const upload = require('app/helpers/uploadImage');
 
 // Middlewares
-const convertFileToField = require('app/http/middleware/convertFileToField')
+const convertFileToField = require('app/http/middleware/convertFileToField');
+const userController = require('app/http/controllers/admin/userController');
 
 router.use((req , res , next) => {
     res.locals.layout = "admin/master";
@@ -67,4 +69,10 @@ router.put('/comments/:id/approved' , commentController.update );
 router.delete('/comments/:id' , commentController.destroy);
 
 router.post('/upload-image' , upload.single('upload') , adminController.uploadImage);
+
+router.get('/users' , userController.index);
+router.get('/users/create' , userController.create);
+router.post('/users' , registerValidator.handle() , userController.store);
+router.delete('/users/:id' , userController.destroy);
+router.get('/users/:id/toggleadmin' , userController.toggleadmin);
 module.exports = router;
