@@ -8,7 +8,7 @@ class forgotPasswordController extends controller {
     
     showForgotPassword(req , res) {
         const title = 'فراموشی رمز عبور';
-        res.render('home/auth/passwords/email' , {  title });
+        res.render('home/auth/passwords/email' , { title });
     }
 
     async sendPasswordResetLink(req  ,res , next) {

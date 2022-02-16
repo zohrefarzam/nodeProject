@@ -16,5 +16,10 @@ categorySchema.virtual('childs' , {
     foreignField : 'parent'
 });
 
+categorySchema.virtual('courses' , {
+    ref : 'Course',
+    localField : '_id',
+    foreignField : 'categories'
+});
 
 module.exports = mongoose.model('Category' , categorySchema);

@@ -9,15 +9,17 @@ class courseController extends controller {
     async index(req , res) {
         try {
             let page = req.query.page || 1;
-            let courses = await Course.paginate({} , { page , sort : { createdAt : 1 } , limit : 2 });
+            let courses = await Course.paginate({} , { page , sort : { createdAt : 1 } , limit : 15 });
             res.render('admin/courses/index',  { title : 'دوره ها' , courses });
         } catch (err) {
             next(err);
         }
     }
 
-    create(req , res) {
-        res.render('admin/courses/create');        
+    async create(req , res) {
+        let categories = await Category.find({});
+
+        res.render('admin/courses/create' , { categories });        
     }
 
     async store(req , res , next) {

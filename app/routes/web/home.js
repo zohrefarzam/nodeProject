@@ -4,6 +4,7 @@ const router = express.Router();
 // Controllers
 const homeController = require('app/http/controllers/homeController');
 const courseController = require('app/http/controllers/courseController');
+const userController = require('app/http/controllers/userController');
 
 // validators 
 const commentValidator = require('app/http/validators/commentValidator');
@@ -22,9 +23,15 @@ router.get('/' , homeController.index);
 router.get('/about-me' , homeController.index);
 router.get('/courses' , courseController.index);
 router.get('/courses/:course' , courseController.single);
+router.post('/courses/payment' , redirectIfNotAuthenticated.handle , courseController.payment);
+router.get('/courses/payment/checker' , redirectIfNotAuthenticated.handle , courseController.checker);
+
 
 router.post('/comment' , redirectIfNotAuthenticated.handle , commentValidator.handle() ,homeController.comment);
 router.get('/download/:episode' , courseController.download);
+
+router.get('/user/panel' , userController.index);
+router.get('/user/panel/history' , userController.history);
 
 
 module.exports = router;
