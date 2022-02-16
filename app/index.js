@@ -10,7 +10,7 @@ const flash = require('connect-flash');
 const passport = require('passport');
 const Helpers = require('./helpers');
 const methodOverride = require('method-override');
-
+const gate=require('app/helpers/gate')
 const rememberLogin = require('app/http/middleware/rememberLogin');
 
 module.exports = class Application {
@@ -57,7 +57,7 @@ module.exports = class Application {
         app.use(passport.initialize());
         app.use(passport.session());
         app.use(rememberLogin.handle);
-
+        app.use(gate.middleware())
         app.use((req , res , next) => {
             app.locals = new Helpers(req, res).getObjects();
             next();
