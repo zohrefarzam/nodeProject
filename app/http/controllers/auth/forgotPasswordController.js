@@ -12,6 +12,7 @@ class forgotPasswordController extends controller {
     }
 
     async sendPasswordResetLink(req  ,res , next) {
+        await this.recaptchaValidation(req , res);
         let result = await this.validationData(req)
         if(result) {
             return this.sendResetLink(req, res)

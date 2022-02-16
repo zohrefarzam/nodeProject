@@ -11,6 +11,7 @@ const commentValidator = require('app/http/validators/commentValidator');
 
 // middlewares
 const redirectIfNotAuthenticated = require('app/http/middleware/redirectIfNotAuthenticated');
+const userController = require('app/http/controllers/userController');
 
 router.get('/logout' , (req ,res) => {
     req.logout();

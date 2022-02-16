@@ -3,7 +3,6 @@ const Schema = mongoose.Schema;
 const bcrypt = require('bcrypt');
 const uniqueString = require('unique-string')
 const mongoosePaginate = require('mongoose-paginate');
-
 const userSchema = Schema({
     name : { type : String , required : true },
     admin : { type : Boolean ,  default : 0 },
@@ -13,6 +12,7 @@ const userSchema = Schema({
     learning : [{ type : Schema.Types.ObjectId , ref : 'Course'}],
     roles : [{ type : Schema.Types.ObjectId , ref : 'Role'}],
 } , { timestamps : true , toJSON : { virtuals : true } });
+userSchema.plugin(mongoosePaginate);
 
 userSchema.plugin(mongoosePaginate);
 

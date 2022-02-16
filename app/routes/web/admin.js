@@ -23,7 +23,8 @@ const roleValidator = require('app/http/validators/roleValidator');
 const upload = require('app/helpers/uploadImage');
 
 // Middlewares
-const convertFileToField = require('app/http/middleware/convertFileToField')
+const convertFileToField = require('app/http/middleware/convertFileToField');
+const userController = require('app/http/controllers/admin/userController');
 
 router.use((req , res , next) => {
     res.locals.layout = "admin/master";
