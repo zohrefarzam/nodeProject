@@ -39,6 +39,13 @@
     </div>
     <div class="form-group row">
         <div class="col">
+            <label for="lang" class="control-label font-weight-bold font-weight-bold">زبان نمایشی</label>
+            <select name="lang" id="lang" class="form-control">
+                <option value="fa" <%= old('lang') == 'fa' ? 'selected' : '' %>>زبان فارسی</option>
+                <option value="en" <%= old('lang') == 'fa' ? 'selected' : '' %> >زبان انگلیسی</option>
+            </select>
+        </div>
+        <div class="col">
             <label for="images" class="control-label font-weight-bold">تصویر دوره</label>
             <input type="file" class="form-control" name="images" id="images" placeholder="تصویر مقاله را وارد کنید" >
         </div>

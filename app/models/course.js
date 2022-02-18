@@ -16,6 +16,7 @@ const courseSchema = Schema({
     time : { type : String , default : '00:00:00' },
     viewCount : { type : Number , default : 0 },
     commentCount : { type : Number , default : 0 },
+    lang:{type:String,required:true}
 } , { timestamps : true , toJSON : { virtuals : true } });
 
 courseSchema.plugin(mongoosePaginate);
@@ -24,13 +25,11 @@ courseSchema.methods.typeToPersian = function() {
     switch (this.type) {
         case 'cash':
                 return 'نقدی'
-            break;
         case 'vip':
-            return 'اعضای ویژه'
-        break;    
+            return 'اعضای ویژه'    
         default:
             return 'رایگان'    
-            break;
+
     }
 }
 

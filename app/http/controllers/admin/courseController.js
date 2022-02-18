@@ -33,7 +33,7 @@ class courseController extends controller {
 
             // create course
             let images = this.imageResize(req.file);
-            let { title , body , type , price , tags} = req.body;
+            let { title , body , type , price , tags , lang} = req.body;
 
             let newCourse = new Course({
                 user : req.user._id,
@@ -44,7 +44,8 @@ class courseController extends controller {
                 price,
                 images ,
                 thumb : images[480],
-                tags
+                tags,
+                lang
             });
 
             await newCourse.save();
